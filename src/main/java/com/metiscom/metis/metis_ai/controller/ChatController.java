@@ -1,10 +1,8 @@
 package com.metiscom.metis.metis_ai.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/chat")
@@ -20,8 +18,20 @@ public class ChatController {
     public String askOllama(@RequestParam String prompt) {
         return this.chatClient.prompt()
                 .user(prompt)
-                .call().
-                content();
+                .call()
+                .content();
     }
 
+    // Per la vera chat in botta e risposta tramite Postman
+    @PostMapping
+    public ResponseEntity<String> chat(@RequestBody ChatRequest request) {
+        String response = this.chatClient.prompt()
+                .user(request.message())
+                .call()
+                .content();
+
+        return ResponseEntity.ok(response);
+    }
 }
+
+record ChatRequest(String message) {}

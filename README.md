@@ -1,4 +1,4 @@
-﻿# metis-ai-backend
+﻿# Metis-Ai-Backend
  
 # Cos'è Metis AI e perché è nato
 Metis AI è un progetto open source creato da me che aiuta nell'assisterti con la creazione di immagini o generazione di asset di ogni tipo e nello sviluppo tramite il chatbot.
